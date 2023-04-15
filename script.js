@@ -1,29 +1,28 @@
-const weatherBlock = document.querySelector("#weather");
+const weatherBlock = document.querySelector('#weather');
 
- function getWeather() {
-    const select = document.getElementById('select');
-    const city = select.value;
-    const API_KEY = '71cd29172858c1aa8d37ea57473d5557';
-    const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`;
-        
-    fetch(API_URL)
-        .then(response => response.json())
-        .then(data => {
-          console.log(data);
-            const location = data.name;
-            const country = data.sys.country;
-            const coordLon = data.coord.lon;
-            const coordLat = data.coord.lat;
-            const temp = Math.round(data.main.temp);
-            const tempMin = Math.round(data.main.temp_min);
-            const tempMax = Math.round(data.main.temp_max);
-            const feelsLike = Math.round(data.main.feels_like);
-            const wind = data.wind.speed;
-            const status = data.weather[0].main;
-            const icon = data.weather[0].icon;
-            const countryCode = `${country}`;
-            const flagUrl = `https://flagcdn.com/w160/${countryCode.toLowerCase()}.png`;
-            weatherBlock.innerHTML = `
+function getWeather() {
+  const select = document.getElementById('select');
+  const city = select.value;
+  const API_KEY = '71cd29172858c1aa8d37ea57473d5557';
+  const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`;
+
+  fetch(API_URL)
+    .then((response) => response.json())
+    .then((data) => {
+      const location = data.name;
+      const { country } = data.sys;
+      const coordLon = data.coord.lon;
+      const coordLat = data.coord.lat;
+      const temp = Math.round(data.main.temp);
+      const tempMin = Math.round(data.main.temp_min);
+      const tempMax = Math.round(data.main.temp_max);
+      const feelsLike = Math.round(data.main.feels_like);
+      const wind = data.wind.speed;
+      const status = data.weather[0].main;
+      const { icon } = data.weather[0];
+      const countryCode = `${country}`;
+      const flagUrl = `https://flagcdn.com/w160/${countryCode.toLowerCase()}.png`;
+      weatherBlock.innerHTML = `
                 <div class="weather__header">
                     <div class="weather__main">
                         <div class="weather__city">
@@ -51,13 +50,13 @@ const weatherBlock = document.querySelector("#weather");
                     <div class="weather__wind-speed"><i class="fa-solid fa-wind"></i> ${wind} m/s</div>
                   </div>
                 </div>  
-            `
+            `;
     })
-    .catch(error => {
-      console.error(error);
-    });  
+    .catch((error) => {
+      error.alert('Oops');
+    });
 }
-getWeather()
-setInterval(()=>{
-  getWeather()
-}, 15000)
+getWeather();
+setInterval(() => {
+  getWeather();
+}, 15000);
