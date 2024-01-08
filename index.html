@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/6aea519dd5.js" crossorigin="anonymous"></script>
     <title>weather</title>
 </head>
-<body>
+
+<body id="body" class="background-image">
     <h1 class="weather__title">Weather Widget</h1>
     <div class="wrapper">
-        <div id="weather" class="weather">
-
+        <div id="weather" class="weather background-image">
+            <!--  -->
         </div>
         <select id="select" onchange="getWeather()">
             <option value="Kyiv">Choose city</option>
-            <option value="Kharkiv"><p>Kharkiv</p></option>
+            <option value="Kharkiv">
+                <p>Kharkiv</p>
+            </option>
             <option value="New York">New York</option>
             <option value="London">London</option>
             <option value="Paris">Paris</option>
@@ -29,8 +32,9 @@
             <option value="Afin">Afin</option>
             <option value="Milan">Milan</option>
             <option value="Akkol’">Akkol’</option>
-          </select>
+        </select>
     </div>
     <script src="./script.js"></script>
 </body>
+
 </html>
