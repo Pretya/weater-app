@@ -9,7 +9,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100%;
+    height: 100vh;
 }
 
 :active,
@@ -75,6 +75,7 @@ select {
     border-radius: 0 15px 15px 0;
 }
 
+/*  */
 .background-image {
     background-size: cover;
     transition: all .5s linear;
@@ -168,27 +169,12 @@ select {
     font-size: 40px;
     font-weight: 700;
     margin-bottom: 10px;
+    color: white;
 }
 
 .country__flag {
     width: 50px;
 }
-
-.weather__city,
-.weather__coord,
-.weather__wind-speed,
-.weather__time {
-    color: white;
-}
-
-.weather__status,
-.weather__coord {
-    font-family: var(--ralewy);
-    font-size: 20px;
-    padding: 5px 0;
-    font-weight: 500;
-}
-
 
 .weather__temp {
     font-size: 30px;
@@ -202,21 +188,27 @@ select {
 }
 
 
-.weather__time {
+.weather__time,
+.weather__date,
+.weather__wind-speed,
+.weather__status,
+.weather__coord {
     padding: 5px 0;
-    font-size: 19px;
+    font-size: 20px;
     font-family: var(--ralewy);
     font-weight: 400;
+    color: #FFF;
+}
+
+.fa-regular {
+    margin-right: 5px;
 }
 
 .weather__wind {
     text-align: center;
 }
 
-.weather__wind-speed {
-    font-size: 25px;
-    padding: 5px 0;
-}
+
 
 .weather__temp-min,
 .weather__temp-max,

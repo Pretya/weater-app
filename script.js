@@ -1,9 +1,12 @@
 const weatherBlock = document.querySelector('#weather');
 const select = document.getElementById('select');
 const body = document.getElementById('body');
+const now = new Date();
+const year = now.getFullYear();
+const month = now.getMonth() + 1; // Месяцы начинаются с 0
+const day = now.getDate();
 // !Часовые пояса
 function getCurrentTime(selectedCity) {
-  const now = new Date();
   let timeZone;
 
   switch (selectedCity) {
@@ -66,6 +69,30 @@ function setWeatherBackground(status) {
   }
 }
 // !Смена заднего фона
+// function setBodyBackground(city) {
+//   const cityClassMapping = {
+//     Kyiv: 'kyiv-background',
+//     Kharkiv: 'kharkiv-background',
+//     'New York': 'newyork-background',
+//     London: 'london-background',
+//     Paris: 'paris-background',
+//     Tokyo: 'tokyo-background',
+//     Cairo: 'cairo-background',
+//     Afin: 'afin-background',
+//     Milan: 'milan-background',
+//     'Akkol’': 'akkol-background',
+//   };
+
+//   // !Удаляем все классы фона из body
+//   body.classList.remove(...Object.values(cityClassMapping));
+
+//   // !Добавляем класс фона в зависимости от выбранного города
+//   const cityClass = cityClassMapping[city];
+//   if (cityClass) {
+//     body.classList.add(cityClass);
+//   }
+// }
+
 function setBodyBackground(city) {
   body.classList.remove(
     'kyiv-background',
@@ -123,9 +150,10 @@ function getWeather(city) {
       const { icon } = data.weather[0];
       const countryCode = `${country}`;
       const flagUrl = `https://flagcdn.com/w160/${countryCode.toLowerCase()}.png`;
+      const currentTime = getCurrentTime(city);
+      const currentDate = `${day}.${month}.${year}`;
       setWeatherBackground(status);
       setBodyBackground(city);
-      const currentTime = getCurrentTime(city);
       weatherBlock.innerHTML = `
                 <div class="weather__header">
                     <div class="weather__main">
@@ -133,7 +161,8 @@ function getWeather(city) {
                           ${location} 
                           <img class="country__flag" src="${flagUrl}" alt="${countryCode}" />
                         </div>
-                        <div class="weather__time">${currentTime}</div>
+                        <div class="weather__time"><i class="fa-regular fa-clock"></i>${currentTime}</div>
+                        <div class="weather__date"><i class="fa-regular fa-calendar-days"></i>${currentDate}</div>
                         <div class="weather__coord">
                           <i class="fa-solid fa-globe"></i> 
                           <span>lon: ${coordLat}</span>,
@@ -155,7 +184,7 @@ function getWeather(city) {
                         <img src="https://openweathermap.org/img/w/${icon}.png" alt="${icon}">
                     </div>
                   </div>
-                </div>  
+                </div>
             `;
     })
     .catch((error) => {
